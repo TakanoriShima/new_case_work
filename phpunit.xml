@@ -29,7 +29,7 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
-        <env name="DB_DATABASE" value="laravel_test"/>
+        <env name="DB_DATABASE" value="case_work_test"/>
     </php>
 </phpunit>
 
