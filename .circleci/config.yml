@@ -36,20 +36,10 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
               git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git main
             fi
-jobs:
-    # build ジョブ: CircleCI 上で Docker コンテナを作成してテストする
-  build:
-    docker:
-      - image: alpine
-    steps:
-      - checkout
-      - run:
-        name: Echo Test
-        command: echo "CircleCI Test"
   # deploy ジョブ: EC2 に SSH 接続して、デプロイを実行する
   deploy:
       machine:
-        image: circleci/classic:edge
+        - image: circleci/classic:edge
       steps:
         - checkout
         # CircleCI に登録した秘密鍵を呼び出す
