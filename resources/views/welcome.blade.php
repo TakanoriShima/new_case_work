@@ -4,6 +4,7 @@
     <div class="row">
         <h1 class="col-sm-12 text-center text-info mb-2">相談支援記録</h1>
         <h2 class="col-sm-12 text-center text-info mt-2">～ 精神障害者向け ～</h2>
+        <h2 class="col-sm-12 text-center text-info mt-2">～ 精神障害者向け2 ～</h2>
     </div>
     <div id="mainVisual">
         <img src="{{ ('/images/network1.jpg') }}" alt="最初に表示されるtop画面">
