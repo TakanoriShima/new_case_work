@@ -46,7 +46,8 @@ jobs:
   #EC2 deploy
   deploy:
     machine:
-      image: circleci/classic:edge
+      docker: # executor type
+        - image: cimg/base:stable
     steps:
       - checkout
       - add_ssh_keys:
