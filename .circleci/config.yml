@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: circleci/php:7.3.0-node-browsers
       - image: circleci/mariadb:10.4
+        command: [--max_allowed_packet=32M]
     environment:
       - DB_CONNECTION: circle_testing
     working_directory: ~/ci-demo
@@ -27,8 +28,14 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
-          name: Run PHPUnit
-          command: vendor/bin/phpunit
+          name: run php unit tests
+          command: |
+                mkdir -p phpunit 
+                phpdbg -qrr vendor/bin/phpunit -d memory_limit=512M --log-junit phpunit/junit.xml --coverage-html phpunit/coverage-report
+      - store_test_results:
+          path:  phpunit
+      - store_artifacts:
+          path:  phpunit
       #heroku deploy
       - deploy:
           name: Deploy main to Heroku
@@ -43,8 +50,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/html/schedule_app/ && git pull origin main'
- 
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/html/TakanoriShima-case_work/ && git pull origin main'
 workflows:
   version: 2
   build_and_deploy:
@@ -55,4 +61,4 @@ workflows:
             - build
           filters:
             branches:
-              only: main            
+              only: main
