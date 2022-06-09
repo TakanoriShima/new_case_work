@@ -50,7 +50,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/html/TakanoriShima-case_work/ && git pull origin main'
+      - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/html/new_case_work/ && git pull origin main'
  
 workflows:
   version: 2
